@@ -21,11 +21,10 @@ java:
 timeout_hook: 300
 
 tests: # For faster results, split tests into individual commands to allow them to run in parallel
-  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew tasks --all'
-  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i testDebug'
-  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i testRelease'
-  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i testFlavor1Debug'
-  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i testFlavor1Release'
-  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i testFlavor2Debug'
-  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i testFlavor2Release'
+  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i android-api-16:test'
+  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i android-api-19:test'
+  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i android-api-21:test'
+  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i android-appcompat-v7:test'
+  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i android-flavors:test'
+  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i android-play-services:test'
 #  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i test'
