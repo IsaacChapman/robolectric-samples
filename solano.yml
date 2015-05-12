@@ -1,0 +1,31 @@
+# Solano Labs example Roboelectric Samples
+
+hooks:
+  pre_setup: export ANDROID_HOME=$HOME/android-sdk-linux && ./solano-pre_setup.sh
+
+cache:
+  key_paths:
+    - ./solano-pre_setup.sh
+    - build.gradle
+  save_paths:
+    - .gradle
+    - HOME/android-sdk-linux
+    - HOME/.gradle
+    - HOME/.m2
+
+java:
+  java_version: java-7-openjdk
+
+# timeout_hook values must be long enough for the initial android-sdk and gradle installs. 
+# Subsequent Solano sessions will use cached versions.
+timeout_hook: 300
+
+tests: # For faster results, split tests into individual commands to allow them to run in parallel
+  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew tasks --all'
+  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i testDebug'
+  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i testRelease'
+  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i testFlavor1Debug'
+  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i testFlavor1Release'
+  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i testFlavor2Debug'
+  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i testFlavor2Release'
+  - 'export ANDROID_HOME=$HOME/android-sdk-linux && ./gradlew -i test'
